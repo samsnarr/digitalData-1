@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>digitalData.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>digitalData.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p>The root JavaScript Object (JSO) MUST be digitalData, and all data properties within this
+specification MUST fall within the hierarchy of the digitalData object.
+The following sub-objects are defined as children of the digitalData object.</p>
+<ul>
+<li>digitalData.pageInstanceID</li>
+<li>digitalData.page</li>
+<li>digitalData.product[n]</li>
+<li>digitalData.cart</li>
+<li>digitalData.transaction</li>
+<li>digitalData.event[n]</li>
+<li>digitalData.component[n]</li>
+<li>digitalData.user[n]</li>
+<li>digitalData.privacyAccessCategories</li>
+<li>digitalData.version</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>javascript: (<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+	<span class="hljs-built_in">window</span>.digitalData = {};
+	<span class="hljs-built_in">window</span>.digitalData.page = {};
+	<span class="hljs-built_in">window</span>.digitalData.page.pageInfo = {};
+	<span class="hljs-built_in">window</span>.digitalData.product = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();
+	<span class="hljs-built_in">window</span>.digitalData.cart = {};
+	<span class="hljs-built_in">window</span>.digitalData.transaction = {};
+	<span class="hljs-built_in">window</span>.digitalData.events = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();
+	<span class="hljs-built_in">window</span>.digitalData.component = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();
+	<span class="hljs-built_in">window</span>.digitalData.user = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();
+	<span class="hljs-built_in">window</span>.digitalData.privacy = {};
+	<span class="hljs-built_in">window</span>.digitalData.version = <span class="hljs-string">"1.0"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p><strong>digitalData.pageInstanceID:</strong> 
+A unique identifier for a page or other piece of content for which data is being collected.</p>
+<p>The Page Identifier is among the most widely used web analytics data properties, and is among
+the top level digitalData objects.</p>
+<p>This value SHOULD distinguish among environments, such as whether this page is in
+development, staging, or production.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.pageInstanceID = <span class="hljs-literal">null</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p><strong>digitalData.page.pageInfo:</strong>
+Describes details about the page.</p>
+<p><strong>Reserved:</strong> 
+<strong>pageID</strong> (String), <strong>pageName</strong> (String), <strong>destinationURL</strong> (String), <strong>referringURL</strong>
+(String), <strong>sysEnv</strong> (String), <strong>variant</strong> (String), <strong>version</strong> (String), <strong>breadcrumbs</strong> (Array::String),
+<strong>author</strong> (String), <strong>issueDate</strong> (String or Date Object), <strong>effectiveDate </strong>(String or Date
+Object), <strong>expiryDate</strong> (String or Date Object), <strong>language</strong> (String), <strong>industryCodes</strong> (String),
+<strong>publisher</strong> (String)</p>
+<p>For destinationURL, and referringURL, RECOMMENDED values are
+document.location, and document.referrer, respectively.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.page.pageInfo = {
+		pageID : <span class="hljs-literal">null</span>,
+		pageName : <span class="hljs-literal">null</span>,
+		destinationURL : <span class="hljs-built_in">document</span>.URL,
+		referringURL : <span class="hljs-built_in">document</span>.referrer,
+		sysEnv : <span class="hljs-literal">null</span>,
+		variant : <span class="hljs-literal">null</span>,
+		version : <span class="hljs-literal">null</span>,
+		breadCrumbs : [],
+		author : <span class="hljs-literal">null</span>,
+		issueDate : <span class="hljs-literal">null</span>, <span class="hljs-comment">// may be implemented as a String or Date Object.</span>
+		effectiveDate : <span class="hljs-literal">null</span>, <span class="hljs-comment">// may be implemented as a String or Date Object.</span>
+		expiryDate : <span class="hljs-literal">null</span>, <span class="hljs-comment">// may be implemented as a String or Date Object.</span>
+		language : <span class="hljs-literal">null</span>,
+		geoRegion : <span class="hljs-literal">null</span>,
+		industryCodes : <span class="hljs-literal">null</span>,
+		publisher : <span class="hljs-literal">null</span>
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p><strong>digitalData.page.category:</strong>
+Because of the wide range of methods for categorization, an object literal is provided for page
+categories.</p>
+<p>The name <strong>primaryCategory</strong> is RECOMMENDED if you included only one set of categories
+for pages, or for your primary set of categories. All other names are optional and should fit the
+individual implementation needs in both naming and values passed.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.page.category = {
+		primaryCategory : <span class="hljs-literal">null</span>,
+		subCategories : [],
+		pageType : <span class="hljs-literal">null</span>
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p><strong>digitalData.page.attributes:</strong>
+This object provides extensibility to the Page object. All names are optional and should fit the
+individual implementation needs in both naming and values passed.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.page.attributes = {};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p><strong>digitalData.newProduct:</strong> Utility function to create new product entries.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.newProduct = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(p)</span> </span>{ <span class="hljs-comment">// Usage: window.digitalData.product.push(window.digitalData.newProduct({}))</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>The <strong>Product object</strong> carries details about a particular product with frequently used properties
+listed below. 
+This is intended for data about products displayed on pages or other content. For
+products added to a shopping cart or ordered in a transaction, see the Cart and Transaction
+objects below.</p>
+<p><strong>Reserved:</strong> <strong>productID</strong> (String), <strong>productName</strong> (String), <strong>description</strong> (String), <strong>productURL</strong>
+(String), <strong>productImage</strong> (String), <strong>productThumbnail</strong> (String), <strong>manufacturer</strong> (String), <strong>sku</strong>
+(String), <strong>color</strong> (String), <strong>size</strong> (String)</p>
+<h1 id="-nbsp-">&nbsp; </h1>
+<pre><code><span class="hljs-comment">// Because of the wide range of methods for categorization, </span>
+<span class="hljs-comment">// an object literal is provided for product categories.</span>
+<span class="hljs-comment">// example: </span>
+    digitalData.product[n].category = {
+     primaryCategory: <span class="hljs-string">"Haircare"</span>,
+        subCategory1: <span class="hljs-string">"Men's"</span>,
+     productType: <span class="hljs-string">"Thinning Hair Treatments"</span>
+    };
+</code></pre><p><strong>Reserved:</strong> <strong>primaryCategory</strong> (String)
+The name primaryCategory is RECOMMENDED if you included only one set of categories
+for products, or for your primary set of categories. </p>
+<p>All other names are optional and should fit
+the individual implementation needs in both naming and values passed.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">var</span> product_ = {
+			sku : <span class="hljs-literal">null</span>,
+			productID : <span class="hljs-literal">null</span>,
+			productName : <span class="hljs-literal">null</span>,
+			description : <span class="hljs-literal">null</span>,
+			productURL : <span class="hljs-literal">null</span>,
+			productImage : <span class="hljs-literal">null</span>,
+			productThumbnail : <span class="hljs-literal">null</span>,
+			manufacturer : <span class="hljs-literal">null</span>,
+			size : <span class="hljs-literal">null</span>,
+			color : <span class="hljs-literal">null</span>,
+			linkedProduct : [],
+			category : {},
+			quantity : <span class="hljs-literal">null</span>,
+			price : <span class="hljs-literal">null</span>,
+			attributes : {}
+		};
+		<span class="hljs-keyword">if</span> (p) {
+			(p.sku != <span class="hljs-literal">undefined</span>) ? (product_.sku = p.sku) : (product_.sku);
+			(p.productID != <span class="hljs-literal">undefined</span>) ? (product_.productID = p.productID) : (product_.productID);
+			(p.productName != <span class="hljs-literal">undefined</span>) ? (product_.productName = p.productName) : (product_.productName);
+			(p.description != <span class="hljs-literal">undefined</span>) ? (product_.description = p.description) : (product_.description);
+			(p.productURL != <span class="hljs-literal">undefined</span>) ? (product_.productURL = p.productURL) : (product_.productURL);
+			(p.productImage != <span class="hljs-literal">undefined</span>) ? (product_.productImage = p.productImage) : (product_.productImage);
+			(p.productThumbnail != <span class="hljs-literal">undefined</span>) ? (product_.productThumbnail = p.productThumbnail) : (product_.productThumbnail);
+			(p.size != <span class="hljs-literal">undefined</span>) ? (product_.size = p.size) : (product_.size);
+			(p.color != <span class="hljs-literal">undefined</span>) ? (product_.color = p.color) : (product_.color);
+			(p.linkedProduct != <span class="hljs-literal">undefined</span>) ? (product_.linkedProduct = p.linkedProduct) : (product_.linkedProduct);
+			(p.category != <span class="hljs-literal">undefined</span>) ? (product_.category = p.color) : (category.color);
+			(p.quantity != <span class="hljs-literal">undefined</span>) ? (product_.quantity = p.quantity) : (product_.quantity);
+			(p.price != <span class="hljs-literal">undefined</span>) ? (product_.price = p.price) : (product_.price);
+			(p.attributes != <span class="hljs-literal">undefined</span>) ? (product_.attributes = p.attributes) : (product_.attributes);
+		}
+		<span class="hljs-keyword">return</span> product_;
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>The <strong>Cart object</strong> carries details about a shopping cart or basket and the products that have been
+added to it. The Cart object is intended for a purchase that has not yet been completed. See the
+Transaction object below for completed orders.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.cart.cartID = <span class="hljs-literal">null</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p><strong>digitalData.cart.price:</strong> This object provides details of the cart price. The <strong>basePrice</strong> SHOULD be the price of the
+<strong>items</strong> before applicable discounts, shipping charges, and tax. The <strong>cartTotal</strong> SHOULD be
+the total price inclusive of all discounts, charges, and tax.</p>
+<p><strong>Reserved:</strong> <strong>basePrice</strong> (Number), <strong>voucherCode</strong> (String), <strong>voucherDiscount</strong> (Number),
+<strong>currency</strong> (String), <strong>taxRate</strong> (Number), <strong>shipping</strong> (Number), <strong>shippingMethod</strong> (String),
+<strong>priceWithTax</strong> (Number), <strong>cartTotal</strong> (Number)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.cart.price = { 
+		basePrice : <span class="hljs-literal">null</span>,
+		voucherCode : <span class="hljs-literal">null</span>,
+		voucherDiscount : <span class="hljs-literal">null</span>,
+		currency : <span class="hljs-literal">null</span>,
+		taxRate : <span class="hljs-literal">null</span>,
+		shipping : <span class="hljs-literal">null</span>,
+		shippingMethod : <span class="hljs-literal">null</span>,
+		priceWithTax : <span class="hljs-literal">null</span>,
+		cartTotal : <span class="hljs-literal">null</span>,
+		attributes : {}, <span class="hljs-comment">// This object provides extensibility to the cart as a whole. Any additional dimensions related to the cart can be provided.</span>
+		item : [] <span class="hljs-comment">// [one or more product objects] window.digitalData.cart.item.push(window.digitalData.newProduct({})) could be used to populate the cart.</span>
+		
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>The <strong>Transaction object</strong> is similar to the Cart object, but represents a completed order. The
+Transaction object contains analogous sub-objects to the Cart object as well as additional subobjects
+specific to completed orders.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.transaction.transactionID = <span class="hljs-literal">null</span>; <span class="hljs-comment">// A unique identifier for a particular transaction; usually an existing order identifier.</span>
+	<span class="hljs-built_in">window</span>.digitalData.transaction.profile = {}; <span class="hljs-comment">// A profile for information about the purchaser, typically associated with a registered user.</span>
+	<span class="hljs-built_in">window</span>.digitalData.transaction.profile.address = { <span class="hljs-comment">// An extensible object for providing (billing) address information for the purchaser.</span>
+		line1 : <span class="hljs-literal">null</span>,
+		line2 : <span class="hljs-literal">null</span>,
+		city : <span class="hljs-literal">null</span>,
+		stateProvince : <span class="hljs-literal">null</span>,
+		postalCode : <span class="hljs-literal">null</span>,
+		country : <span class="hljs-literal">null</span>,
+		attributes : {}
+	};
+
+	<span class="hljs-built_in">window</span>.digitalData.transaction.profile.shippingAddress = { <span class="hljs-comment">// As for address, but for the shipping address.</span>
+		line1 : <span class="hljs-literal">null</span>,
+		line2 : <span class="hljs-literal">null</span>,
+		city : <span class="hljs-literal">null</span>,
+		stateProvince : <span class="hljs-literal">null</span>,
+		postalCode : <span class="hljs-literal">null</span>,
+		country : <span class="hljs-literal">null</span>,
+		attributes : {}
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p><strong>digitalData.transaction.total:</strong>  This object provides details of the final price the purchaser has to pay. The basePrice
+SHOULD be the price of the items before applicable discounts, shipping charges, and tax.
+The transactionTotal SHOULD be the total price inclusive of all discounts, charges, and
+tax.</p>
+<p><strong>Reserved:</strong> <strong>totalPrice</strong> (Number), <strong>voucherCode</strong> (String), <strong>voucherDiscount</strong> (Number),
+<strong>currency</strong> (String), <strong>taxRate</strong> (Number), <strong>shipping</strong> (Number), <strong>shippingMethod</strong> (String),
+<strong>priceWithTax</strong> (Number), <strong>transactionTotal</strong> (Number)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.transaction.total = { <span class="hljs-comment">// window.digitalData.cart.item.push(window.digitalData.newProduct({})) could be used to populate the cart.</span>
+		basePrice : <span class="hljs-literal">null</span>,
+		voucherCode : <span class="hljs-literal">null</span>,
+		voucherDiscount : <span class="hljs-literal">null</span>,
+		currency : <span class="hljs-literal">null</span>,
+		taxRate : <span class="hljs-literal">null</span>,
+		shipping : <span class="hljs-literal">null</span>,
+		shippingMethod : <span class="hljs-literal">null</span>,
+		priceWithTax : <span class="hljs-literal">null</span>,
+		transactionTotal : <span class="hljs-literal">null</span>,
+		attributes : {},
+		item : [] <span class="hljs-comment">// one or more product objects</span>
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Utility function to create new event entries.
+Usage: window.digitalData.events.push(window.digitalData.newEvent({}))</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.newEvent = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ev)</span> </span>{
+		<span class="hljs-keyword">var</span> event_ = {
+			eventName : <span class="hljs-literal">null</span>,
+			eventAction : <span class="hljs-literal">null</span>,
+			eventPoints : <span class="hljs-literal">null</span>,
+			type : <span class="hljs-literal">null</span>,
+			timeStamp : <span class="hljs-literal">null</span>,
+			effect : <span class="hljs-literal">null</span>,
+			category : {
+				primaryCategory : <span class="hljs-literal">null</span>,
+				subCategory : <span class="hljs-literal">null</span>
+			},
+			attributes : {}
+		};
+		<span class="hljs-keyword">if</span> (ev) {
+			(ev.eventName != <span class="hljs-literal">undefined</span>) ? (event_.eventName = ev.eventName) : (event_.eventName);
+			(ev.eventAction != <span class="hljs-literal">undefined</span>) ? (event_.eventAction = ev.eventAction) : (event_.eventAction);
+			(ev.eventPoints != <span class="hljs-literal">undefined</span>) ? (event_.eventPoints = ev.eventPoints) : (event_.eventPoints);
+			(ev.type != <span class="hljs-literal">undefined</span>) ? (event_.type = ev.type) : (event_.type);
+			(ev.timeStamp != <span class="hljs-literal">undefined</span>) ? (event_.timeStamp = ev.timeStamp) : (event_.timeStamp);
+			(ev.effect != <span class="hljs-literal">undefined</span>) ? (event_.effect = ev.effect) : (event_.effect);
+			(ev.category != <span class="hljs-literal">undefined</span>) ? (event_.category = ev.category) : (event_.category);
+			(ev.attributes != <span class="hljs-literal">undefined</span>) ? (event_.attributes = ev.attributes) : (event_.attributes);
+		}
+		<span class="hljs-keyword">return</span> event_;
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>The Component object is intended to capture information about a content component included
+as part of a page, such as a video. Interactions with the component — such as playing the video
+— would be an Event; use the events object to capture these instead.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Utility function to create new component entries.
+Usage: window.digitalData.component.push(window.digitalData.newComponent({}))</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.newComponent = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(cmp)</span> </span>{
+		<span class="hljs-keyword">var</span> component_ = {
+			componentID : <span class="hljs-literal">null</span>,
+			componentName : <span class="hljs-literal">null</span>,
+			description : <span class="hljs-literal">null</span>,
+			category : {
+				primaryCategory : <span class="hljs-literal">null</span>,
+				subcategories : [],
+				componentType : <span class="hljs-literal">null</span>
+			},
+			attributes : {}
+		};
+		<span class="hljs-keyword">if</span> (cmp) {
+			(cmp.componentID != <span class="hljs-literal">undefined</span>) ? (component_.componentID = cmp.componentID) : (component_.componentID);
+			(cmp.componentName != <span class="hljs-literal">undefined</span>) ? (component_.componentName = cmp.componentName) : (component_.componentName);
+			(cmp.description != <span class="hljs-literal">undefined</span>) ? (component_.description = cmp.description) : (component_.description);
+			(cmp.category != <span class="hljs-literal">undefined</span>) ? (component_.category = cmp.category) : (component_.category);
+			(cmp.attributes != <span class="hljs-literal">undefined</span>) ? (component_.attributes = cmp.attributes) : (component_.attributes);
+		}
+		<span class="hljs-keyword">return</span> component_;
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Utility function to create new user entries.
+Usage: window.digitalData.user.push(window.digitalData.newComponent({}))</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.newUser = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(usr)</span> </span>{
+		<span class="hljs-keyword">var</span> user_ = {
+			segment : {},
+			profile : [{
+				profileID : <span class="hljs-literal">null</span>,
+				userName : <span class="hljs-literal">null</span>,
+				email : <span class="hljs-literal">null</span>,
+				language : <span class="hljs-literal">null</span>,
+				returningStatus : <span class="hljs-literal">null</span>,
+				type : <span class="hljs-literal">null</span>,
+				address : {
+					line1 : <span class="hljs-literal">null</span>,
+					line2 : <span class="hljs-literal">null</span>,
+					city : <span class="hljs-literal">null</span>,
+					stateProvince : <span class="hljs-literal">null</span>,
+					postalCode : <span class="hljs-literal">null</span>,
+					country : <span class="hljs-literal">null</span>
+				},
+				social : {},
+				attributes : {}
+			}],
+			attributes : {}
+		};
+		<span class="hljs-keyword">if</span> (usr) {
+			(usr.segment != <span class="hljs-literal">undefined</span>) ? (user_.segment = usr.segment) : (user_.segment);
+			(usr.profile != <span class="hljs-literal">undefined</span>) ? (user_.profile = usr.profile) : (user_.profile);
+			(usr.attributes != <span class="hljs-literal">undefined</span>) ? (user_.attributes = usr.attributes) : (user_.attributes);
+		}
+		<span class="hljs-keyword">return</span> user_;
+	};
+
+	<span class="hljs-built_in">window</span>.digitalData.privacy.accessCategories = [];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Utility function to create new access category entries.
+Usage: window.digitalData.privacy.accessCategories.push(window.digitalData.newAccessCategory({}))</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.newAccessCategory = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ac)</span> </span>{
+		<span class="hljs-keyword">var</span> accessCategory_ = {
+			categoryName : <span class="hljs-literal">null</span>,
+			domains : <span class="hljs-literal">null</span>,
+			attributes : {}
+		};
+		<span class="hljs-keyword">if</span> (ac) {
+			(ac.categoryName != <span class="hljs-literal">undefined</span>) ? (accessCategory_.categoryName = ac.categoryName) : (accessCategory_.categoryName);
+			(ac.domains != <span class="hljs-literal">undefined</span>) ? (accessCategory_.domains = ac.domains) : (accessCategory_.domains);
+			(ac.attributes != <span class="hljs-literal">undefined</span>) ? (accessCategory_.attributes = ac.attributes) : (accessCategory_.attributes);
+		}
+		<span class="hljs-keyword">return</span> accessCategory_;
+	};
+
+	<span class="hljs-built_in">window</span>.digitalData.trackEvent = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e, d1, d2, f)</span> </span>{ 
+		<span class="hljs-built_in">window</span>.digitalData.linkTrackVars = [<span class="hljs-string">"events"</span>];
+		<span class="hljs-built_in">window</span>.digitalData.linkTrackEvents = [<span class="hljs-string">""</span>];
+		<span class="hljs-keyword">var</span> events = [];
+		events.push(e);
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; events.length; i++) {
+			<span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> e.eventAction == <span class="hljs-string">"string"</span>) {
+				<span class="hljs-keyword">switch</span> (e.eventAction) {
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"click"</span> : 
+						<span class="hljs-built_in">window</span>.digitalData.trackClick(events[i], d1, d2); 
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"addToCart"</span> : 
+						<span class="hljs-built_in">window</span>.digitalData.trackCartAdd(events[i], d1, d2); 
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"searchInit"</span> : 
+						<span class="hljs-built_in">window</span>.digitalData.trackSearchInit(events[i], d1, d2); 
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"checkout"</span> : 
+						<span class="hljs-built_in">window</span>.digitalData.trackCheckout(events[i], d1, d2); 
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">default</span> :
+						<span class="hljs-keyword">try</span> {
+							<span class="hljs-built_in">eval</span>(f(events[i]));
+						} <span class="hljs-keyword">catch</span> (e) {
+							;
+						}
+						<span class="hljs-keyword">break</span>;
+				}
+			}
+		}		 
+	};
+	
+	<span class="hljs-built_in">window</span>.digitalData.trackClick = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e, d1, d2)</span> </span>{
+		<span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> e.type == <span class="hljs-string">"string"</span>) {
+			<span class="hljs-keyword">switch</span> (e.type) {
+				<span class="hljs-keyword">case</span> <span class="hljs-string">"navigation"</span> :
+					<span class="hljs-built_in">window</span>.digitalData.trackNavClick(e, d1, d2); 
+					<span class="hljs-keyword">break</span>;
+				<span class="hljs-keyword">case</span> <span class="hljs-string">"promo"</span> :
+					<span class="hljs-built_in">window</span>.digitalData.trackPromoClick(e, d1, d2); 
+					<span class="hljs-keyword">break</span>;
+				<span class="hljs-keyword">default</span> :
+					<span class="hljs-keyword">break</span>;
+			}
+		}
+	};
+	
+	<span class="hljs-built_in">window</span>.digitalData.eventSubcategoryToString  = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> </span>{
+		<span class="hljs-keyword">var</span> sc = <span class="hljs-string">""</span>;
+		<span class="hljs-keyword">if</span> (e.category.subCategory != <span class="hljs-literal">null</span> &amp;&amp; e.category.subCategory != <span class="hljs-literal">undefined</span>) {
+			sc = e.category.subCategory.join(<span class="hljs-string">":"</span>);
+		}
+		<span class="hljs-keyword">return</span> sc; 
+	};
+	
+	<span class="hljs-built_in">window</span>.digitalData.trackNavClick = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e, d1, d2)</span> </span>{
+		<span class="hljs-built_in">window</span>.digitalData.linkTrackVars.push(<span class="hljs-string">"eVar6"</span>);
+		<span class="hljs-built_in">window</span>.digitalData.linkTrackEvents.push(<span class="hljs-string">"event6"</span>);
+		<span class="hljs-built_in">window</span>.digitalData.eVar6 = e.category.primaryCategory + <span class="hljs-string">"|"</span> + <span class="hljs-built_in">window</span>.digitalData.eventSubcategoryToString(e);
+		<span class="hljs-keyword">if</span> (e.effect != <span class="hljs-literal">null</span> &amp;&amp; e.effect != <span class="hljs-literal">undefined</span>) {
+			<span class="hljs-built_in">window</span>.digitalData.eVar6 = <span class="hljs-built_in">window</span>.digitalData.eVar6 + <span class="hljs-string">":"</span> + e.effect;
+		}
+	};
+	
+	<span class="hljs-built_in">window</span>.digitalData.trackPromoClick = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e, d1, d2)</span> </span>{
+		<span class="hljs-built_in">window</span>.digitalData.linkTrackVars.push(<span class="hljs-string">"eVar7"</span>);
+		<span class="hljs-built_in">window</span>.digitalData.linkTrackEvents.push(<span class="hljs-string">"event7"</span>);
+		<span class="hljs-built_in">window</span>.digitalData.eVar7 = e.category.primaryCategory + <span class="hljs-string">"|"</span> + <span class="hljs-built_in">window</span>.digitalData.eventSubcategoryToString(e);
+		<span class="hljs-keyword">if</span> (e.effect != <span class="hljs-literal">null</span> &amp;&amp; e.effect != <span class="hljs-literal">undefined</span>) {
+			<span class="hljs-built_in">window</span>.digitalData.eVar7 = <span class="hljs-built_in">window</span>.digitalData.eVar7 + <span class="hljs-string">":"</span> + e.effect;
+		}
+	};
+	
+	<span class="hljs-built_in">window</span>.digitalData.trackSearchInit = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e, d1, d2)</span> </span>{
+		<span class="hljs-built_in">window</span>.digitalData.linkTrackVars.push(<span class="hljs-string">"eVar8"</span>);
+		<span class="hljs-built_in">window</span>.digitalData.linkTrackEvents.push(<span class="hljs-string">"event8"</span>);
+		<span class="hljs-built_in">window</span>.digitalData.eVar8 = e.attributes.search.searchQuery;
+	};
+	
+	<span class="hljs-built_in">window</span>.digitalData.trackCartAdd = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e, d1, d2)</span> </span>{
+		<span class="hljs-built_in">window</span>.digitalData.linkTrackVars.push(<span class="hljs-string">"products"</span>);
+		<span class="hljs-built_in">window</span>.digitalData.linkTrackEvents.push(<span class="hljs-string">"event11"</span>);
+		<span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> e.attributes != <span class="hljs-string">"undefined"</span>) {
+			<span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> e.attributes.items != <span class="hljs-string">"undefined"</span>) {
+				<span class="hljs-keyword">var</span> products = []; 
+				<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; e.attributes.items.length; i++) {
+					products.push( <span class="hljs-string">";"</span> + e.attributes.items[i].sku + <span class="hljs-string">";;;;eVar10="</span> + e.attributes.items[i].productID );
+				}
+				<span class="hljs-built_in">window</span>.digitalData.productString = products.join(); 
+			}
+		}
+	};
+	
+	<span class="hljs-built_in">window</span>.digitalData.trackCheckout = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e, d1, d2)</span> </span>{
+		<span class="hljs-built_in">window</span>.digitalData.linkTrackVars.push(<span class="hljs-string">"products"</span>);
+		<span class="hljs-built_in">window</span>.digitalData.linkTrackEvents.push(<span class="hljs-string">"event12"</span>);
+		<span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> e.attributes != <span class="hljs-string">"undefined"</span>) {
+			<span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> e.attributes.items != <span class="hljs-string">"undefined"</span>) {
+				<span class="hljs-keyword">var</span> products = []; 
+				<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; e.attributes.items.length; i++) {
+					products.push( <span class="hljs-string">";"</span> + e.attributes.items[i].sku + <span class="hljs-string">";;;;eVar10="</span> + e.attributes.items[i].productID );
+				}
+				<span class="hljs-built_in">window</span>.digitalData.productString = products.join(); 
+			}
+		}
+	};
+	
+})();</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
