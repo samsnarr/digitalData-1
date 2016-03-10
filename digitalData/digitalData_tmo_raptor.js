@@ -215,7 +215,11 @@ javascript: (function() {
 			(ev.attributes != undefined) ? (event_.attributes = ev.attributes) : (event_.attributes);
 			(ev.product != undefined) ? (event_.product = ev.product) : (event_.product);
 		}
+		// event array is updated and a window.trigger is fired at this point to alert the browser that a new event has occurred.
 		window.digitalData.events.push(event_);
+		if ( typeof jQuery != "undefined") {
+			jQuery(window).trigger(event_);
+		}
 		return event_;
 	};
 
@@ -253,4 +257,33 @@ javascript: (function() {
 	};
 	
 })();
+
+// sample code for demo -
+window.digitalData.debug = true;
+// start the event listener:
+// this is example code that would be used to listen for digitalData events
+// the event data would then be used to trigger post-page load tagging -
+// typically you'd want to deploy this on page load through the tag management platform.
+window.digitalData.eventHandler = function() {
+	if ( typeof jQuery != "undefined") {
+		// binding is based on event.type:
+		jQuery(window).bind("CustomTagEvent", function(e) {
+			if (window.digitalData.debug !== false) {
+				console.log("event triggered: name-" + e.eventName + " action-" + e.eventAction + " type-" + e.type);
+			}
+		});
+	}
+};
+window.digitalData.eventHandler();
+// trigger an event:
+window.digitalData.newEvent({
+	eventName : "Tool Usage: Tool Interactions",
+	eventAction : "Tool Interactions",
+	type : "CustomTagEvent"
+});
+window.digitalData.newEvent({
+	eventName : "Cart Add",
+	eventAction : "CartAdd",
+	type : "CustomTagEvent"
+});
  
