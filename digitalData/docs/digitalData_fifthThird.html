@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>digitalData_fifthThird.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>digitalData_fifthThird.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p>The root JavaScript Object (JSO) MUST be digitalData, and all data properties within this
+specification MUST fall within the hierarchy of the digitalData object.
+The following sub-objects are defined as children of the digitalData object.</p>
+<ul>
+<li>digitalData.page</li>
+<li>digitalData.product[n]</li>
+<li>digitalData.cart</li>
+<li>digitalData.event[n]</li>
+<li>digitalData.user</li>
+<li>digitalData.version</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>javascript: (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+	<span class="hljs-built_in">window</span>.digitalData = {};
+	<span class="hljs-built_in">window</span>.digitalData.page = {};
+	<span class="hljs-built_in">window</span>.digitalData.page.pageInfo = {};
+	<span class="hljs-built_in">window</span>.digitalData.product = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();
+	<span class="hljs-built_in">window</span>.digitalData.cart = {};
+	<span class="hljs-built_in">window</span>.digitalData.transaction = {};
+	<span class="hljs-built_in">window</span>.digitalData.events = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();
+	<span class="hljs-built_in">window</span>.digitalData.user = {};
+	<span class="hljs-built_in">window</span>.digitalData.version = <span class="hljs-string">"1.0"</span>;
+	<span class="hljs-built_in">window</span>.digitalData.debug = <span class="hljs-literal">false</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p><strong>digitalData.page.pageInfo:</strong>
+Describes details about the page.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.page.pageInfo = {
+		pageID : <span class="hljs-literal">null</span>,
+		site : <span class="hljs-literal">null</span>,
+		pageName : <span class="hljs-literal">null</span>,
+		pageTitle : <span class="hljs-literal">null</span>,
+		pageURL : <span class="hljs-built_in">document</span>.URL,
+		previousPageURL : <span class="hljs-built_in">document</span>.referrer,
+		version : <span class="hljs-literal">null</span>,
+		domain : <span class="hljs-literal">null</span>,
+		responsiveState : <span class="hljs-literal">null</span>,
+		timeStamp : <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(),
+		MLOName : <span class="hljs-literal">null</span>,
+		OCApplicationType : <span class="hljs-literal">null</span>,
+		CLB2CApplicationNumber : <span class="hljs-literal">null</span>,
+		turndownCode : <span class="hljs-literal">null</span>,
+		morgageLeadID : <span class="hljs-literal">null</span>,
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p><strong>digitalData.page.category:</strong>
+Because of the wide range of methods for categorization, an object literal is provided for page
+categories.</p>
+<p>The name <strong>primaryCategory</strong> is RECOMMENDED if you included only one set of categories
+for pages, or for your primary set of categories. All other names are optional and should fit the
+individual implementation needs in both naming and values passed.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.page.category = {
+		primaryCategory : <span class="hljs-literal">null</span>,
+		subCategories : [],
+		pageType : <span class="hljs-literal">null</span>
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p><strong>digitalData.page.attributes:</strong>
+This object provides extensibility to the Page object. All names are optional and should fit the
+individual implementation needs in both naming and values passed.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.page.attributes = {};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>added to capture data specific to search results pages.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.page.attributes.search = {
+		searchTerm : <span class="hljs-literal">null</span>,
+		resultsCount : <span class="hljs-literal">null</span>
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p><strong>digitalData.newProduct:</strong> Utility function to create new product entries.</p>
+<pre><code><span class="hljs-comment">// window.digitalData.product.push(window.digitalData.newProduct({}))</span>
+</code></pre>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.newProduct = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">p</span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>The <strong>Product object</strong> carries details about a particular product with frequently used properties
+listed below.
+This is intended for data about products displayed on pages or other content.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">var</span> product_ = {
+			id : <span class="hljs-literal">null</span>,
+			name : <span class="hljs-literal">null</span>,
+			type : <span class="hljs-literal">null</span>,
+			attributes : {}
+		};
+		<span class="hljs-keyword">if</span> (p) {
+			(p.id != <span class="hljs-literal">undefined</span>) ? (product_.id = p.id) : (product_.id);
+			(p.name != <span class="hljs-literal">undefined</span>) ? (product_.name = p.name) : (product_.name);
+			(p.type != <span class="hljs-literal">undefined</span>) ? (product_.type = p.type) : (product_.type);
+			(p.attributes != <span class="hljs-literal">undefined</span>) ? (product_.attributes = p.attributes) : (product_.attributes);
+		}
+		<span class="hljs-keyword">return</span> product_;
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>The <strong>Cart object</strong> carries details about a shopping cart or basket and the products that have been
+added to it. The Cart object is intended for a purchase that has not yet been completed.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.cart = {
+		cartID : <span class="hljs-literal">null</span>,
+		attributes : {}, <span class="hljs-comment">// This object provides extensibility to the cart as a whole. Any additional dimensions related to the cart can be provided.</span>
+		product : [] <span class="hljs-comment">// [one or more product objects] window.digitalData.cart.item.push(window.digitalData.newProduct({})) could be used to populate the cart.</span>
+
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Utility function to create new event entries.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">window</span>.digitalData.newEvent = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ev</span>) </span>{
+		<span class="hljs-keyword">var</span> event_ = {
+			eventName : <span class="hljs-literal">null</span>,
+			eventAction : <span class="hljs-literal">null</span>,
+			type : <span class="hljs-literal">null</span>,
+			timeStamp : <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(),
+			attributes : {}
+		};
+		<span class="hljs-keyword">if</span> (ev) {
+			(ev.eventName != <span class="hljs-literal">undefined</span>) ? (event_.eventName = ev.eventName) : (event_.eventName);
+			(ev.eventAction != <span class="hljs-literal">undefined</span>) ? (event_.eventAction = ev.eventAction) : (event_.eventAction);
+			(ev.type != <span class="hljs-literal">undefined</span>) ? (event_.type = ev.type) : (event_.type);
+			(ev.timeStamp != <span class="hljs-literal">undefined</span>) ? (event_.timeStamp = ev.timeStamp) : (event_.timeStamp);
+			(ev.attributes != <span class="hljs-literal">undefined</span>) ? (event_.attributes = ev.attributes) : (event_.attributes);
+		}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>event array is updated and a window.trigger is fired at this point to alert the browser that a new event has occurred.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-built_in">window</span>.digitalData.events.push(event_);
+		<span class="hljs-keyword">if</span> ( <span class="hljs-keyword">typeof</span> jQuery != <span class="hljs-string">"undefined"</span>) {
+			jQuery(<span class="hljs-built_in">window</span>).trigger(event_);
+		}
+		<span class="hljs-keyword">return</span> event_;
+	};
+
+	<span class="hljs-built_in">window</span>.digitalData.user = {
+		ECIFID : <span class="hljs-literal">null</span>,
+		loginStatus : <span class="hljs-literal">false</span>,
+		attributes : {}
+	};
+})();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p><strong>to be implemented in a global page load rule in DTM -</strong>
+sample code for demo -</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.debug = <span class="hljs-literal">true</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>start the event listener:
+this is example code that would be used to listen for digitalData events
+the event data would then be used to trigger post-page load tagging -
+typically you’d want to deploy this on page load through the tag management platform.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.eventHandler = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+	<span class="hljs-keyword">if</span> ( <span class="hljs-keyword">typeof</span> jQuery != <span class="hljs-string">"undefined"</span>) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>binding is based on event.type:</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		jQuery(<span class="hljs-built_in">window</span>).bind(<span class="hljs-string">"CustomTagEvent"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+			<span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.digitalData.debug !== <span class="hljs-literal">false</span>) {
+				<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"event triggered: name-"</span> + e.eventName + <span class="hljs-string">" action-"</span> + e.eventAction + <span class="hljs-string">" type-"</span> + e.type);
+
+				<span class="hljs-keyword">if</span> (e.eventAction == <span class="hljs-string">"Tool Interactions"</span>) {
+					<span class="hljs-keyword">switch</span> (e.eventName) {
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"Tool Usage: Skip Calculator"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						;<span class="hljs-comment">//_satellite.track("tool_usage_skip_calculator");</span>
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"Tool Usage: Calculator Link"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"Tool Usage: Tool Starts"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						;<span class="hljs-comment">//_satellite.track("tool_usage_tool_start");</span>
+						<span class="hljs-keyword">break</span>;
+					}
+				}
+
+				<span class="hljs-keyword">if</span> (e.eventAction == <span class="hljs-string">"Page Element Interactions"</span>) {
+					<span class="hljs-keyword">switch</span> (e.eventName) {
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"Find MLO Click"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"Call Now Click"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"Apply Now Click"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"Find a Branch Click"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"Contact Us Submission"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"MLO: Lead Submitted"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"Call Me Maybe"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"File Download"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"In-page Content View"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					}
+				}
+
+				<span class="hljs-keyword">if</span> (e.eventAction == <span class="hljs-string">"Branch/ATM Locator Search Initiation"</span>) {
+					<span class="hljs-keyword">if</span> (e.eventName == <span class="hljs-string">"Tool Usage: Branch/ATM Locator Search Initiation"</span>) {
+						;<span class="hljs-comment">// example:</span>
+						;<span class="hljs-comment">//s.linkTrackEvents = "events,";</span>
+						;<span class="hljs-comment">//s.linkTrackVars = "eVar56,eVar1,eVar2,eVar3,eVar4,eVar5,eVar6,eVar7,evar17,eVar61,eVar62,eVar63,eVar64";</span>
+						;<span class="hljs-comment">//s.eVar56 = e.attributes.searchTerm;</span>
+						;<span class="hljs-comment">//s.tl();</span>
+						;<span class="hljs-comment">// or</span>
+						;<span class="hljs-comment">//_satellite.track("tool_usage_calculator");</span>
+					}
+				}
+
+				<span class="hljs-keyword">if</span> (e.eventAction == <span class="hljs-string">"Site Search Interactions"</span>) {
+					<span class="hljs-keyword">switch</span> (e.eventName) {
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"Search Initiation"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"Search Result Click"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					}
+				}
+
+				<span class="hljs-keyword">if</span> (e.eventAction == <span class="hljs-string">"Account Action"</span>) {
+					;<span class="hljs-comment">// TBD</span>
+				}
+
+				<span class="hljs-keyword">if</span> (e.eventAction == <span class="hljs-string">"Registration"</span>) {
+					<span class="hljs-keyword">switch</span> (e.eventName) {
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"Registration Start"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"Registration Complete"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					}
+				}
+
+				<span class="hljs-keyword">if</span> (e.eventAction == <span class="hljs-string">"Authentication"</span>) {
+					<span class="hljs-keyword">switch</span> (e.eventName) {
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"Login"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"Logout"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					}
+				}
+
+				<span class="hljs-keyword">if</span> (e.eventAction == <span class="hljs-string">"MLO Search"</span>) {
+					<span class="hljs-keyword">switch</span> (e.eventName) {
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"MLO Search: Start"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"MLO Search: Searches"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"MLO Search: Click to Email"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"MLO Search: Click to Call"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						<span class="hljs-keyword">break</span>;
+					<span class="hljs-keyword">case</span> <span class="hljs-string">"MLO Search: Visit Website"</span>:
+						;<span class="hljs-comment">// TBD</span>
+						;<span class="hljs-comment">//_satellite.track("mlo_search_visit_website");</span>
+						<span class="hljs-keyword">break</span>;
+					}
+				}
+
+				<span class="hljs-keyword">if</span> (e.eventAction == <span class="hljs-string">"Page Load"</span>) {
+					;<span class="hljs-comment">// s.t()</span>
+					;<span class="hljs-comment">// _satellite.track("page_load");</span>
+					;<span class="hljs-comment">// TBD</span>
+				}
+			}
+		});
+	}
+};
+<span class="hljs-built_in">window</span>.digitalData.eventHandler();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p><strong>to be implemented by site dev team on page events -</strong>
+trigger an event:</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>event103, Set any time a visitor clicks Skip Calculator in CLB2C app</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"Tool Usage: Skip Calculator"</span>,
+	eventAction : <span class="hljs-string">"Tool Interactions"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>event101, On click of any link to a calculator</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"Tool Usage: Calculator Link"</span>,
+	eventAction : <span class="hljs-string">"Tool Interactions"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>event100, On click of a “find a specialist”, “Find a mortgage loan originator”, or “find MLO” button</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"Find MLO Click"</span>,
+	eventAction : <span class="hljs-string">"Page Element Interactions"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>event99, On any click to initiate a phone call</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"Call Now Click"</span>,
+	eventAction : <span class="hljs-string">"Page Element Interactions"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>eventTBD, On failed attempt to initiate branch finder search</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"Tool Usage: Branch/ATM Locator Search Initiation"</span>,
+	eventAction : <span class="hljs-string">"Branch/ATM Locator Search Initiation"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>,
+	attributes : {
+		searchTerm : <span class="hljs-string">"Current Location"</span>,
+		validSearch : <span class="hljs-literal">false</span>,
+		includeBranches : <span class="hljs-literal">true</span>,
+		includeATMs : <span class="hljs-literal">true</span>
+	}
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>eventTBD, On successful branch finder search</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"Tool Usage: Branch/ATM Locator Search Initiation"</span>,
+	eventAction : <span class="hljs-string">"Branch/ATM Locator Search Initiation"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>,
+	attributes : {
+		searchTerm : <span class="hljs-string">"Current Location"</span>,
+		validSearch : <span class="hljs-literal">true</span>,
+		includeBranches : <span class="hljs-literal">true</span>,
+		includeATMs : <span class="hljs-literal">true</span>
+	}
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>event95, On click of an “apply now” button</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"Apply Now Click"</span>,
+	eventAction : <span class="hljs-string">"Page Element Interactions"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>event94, On click of a “find a branch” button</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"Find a Branch Click"</span>,
+	eventAction : <span class="hljs-string">"Page Element Interactions"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>event86, On submission of “contact us” or “get help” form</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"Contact Us Submission"</span>,
+	eventAction : <span class="hljs-string">"Page Element Interactions"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>eventTBD, On submission of MLO lead application</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"MLO: Lead Submitted"</span>,
+	eventAction : <span class="hljs-string">"Page Element Interactions"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>event46, On click of “talk now”, “request a call”, or “call me now”</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"Call Me Maybe"</span>,
+	eventAction : <span class="hljs-string">"Page Element Interactions"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>event40, file download click</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"File Download"</span>,
+	eventAction : <span class="hljs-string">"Page Element Interactions"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>,
+	attributes : {
+		fileName : <span class="hljs-string">"Account Statement"</span>
+	}
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>event39, search result click</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"Search Result Click"</span>,
+	eventAction : <span class="hljs-string">"Site Search Interactions"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>,
+	attributes : {
+		resultClick : <span class="hljs-string">"Home Page"</span>
+	}
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>event36, search initiation</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"Search Initiation"</span>,
+	eventAction : <span class="hljs-string">"Site Search Interactions"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>,
+	attributes : {
+		searchTerm : <span class="hljs-string">"Free Online Checking"</span>
+	}
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>event35, On first interaction with a tool (calculators, widgets, etc)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"Tool Usage: Tool Starts"</span>,
+	eventAction : <span class="hljs-string">"Tool Interactions"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>,
+	attributes : {
+		toolName : <span class="hljs-string">"Morgage Calculator"</span>
+	}
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>event32, On click to display additional page content (tabs, etc)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"In-page Content View"</span>,
+	eventAction : <span class="hljs-string">"Page Element Interactions"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>,
+	attributes : {
+		contentName : <span class="hljs-string">"descriptions TBD"</span>
+	}
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <p>eventTBD, Account Action</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"Account Action"</span>,
+	eventAction : <span class="hljs-string">"Account Action"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>,
+	attributes : {
+		accountAction : <span class="hljs-string">"descriptions TBD"</span>
+	}
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <p>event7, Logouts</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"Logout"</span>,
+	eventAction : <span class="hljs-string">"Authentication"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <p>event6, Logins</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"Login"</span>,
+	eventAction : <span class="hljs-string">"Authentication"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p>eventTBD, MLO Search: Visit Website</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"MLO Search: Visit Website"</span>,
+	eventAction : <span class="hljs-string">"MLO Search"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <p>eventTBD, MLO Search: Click to Call</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"MLO Search: Click to Call"</span>,
+	eventAction : <span class="hljs-string">"MLO Search"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>eventTBD, MLO Search: Click to Email</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"MLO Search: Click to Email"</span>,
+	eventAction : <span class="hljs-string">"MLO Search"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <p>eventTBD, MLO Search: Searches</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"MLO Search: Searches"</span>,
+	eventAction : <span class="hljs-string">"MLO Search"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-38">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-38">&#182;</a>
+              </div>
+              <p>eventTBD, MLO Search: Start</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"MLO Search: Start"</span>,
+	eventAction : <span class="hljs-string">"MLO Search"</span>,
+	type : <span class="hljs-string">"CustomTagEvent"</span>
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <p>called by a single-page app (e.g., Open Consumer) to indicate that a new virtual page has been loaded</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.digitalData.newEvent({
+	eventName : <span class="hljs-string">"Page Load"</span>,
+	eventAction : <span class="hljs-string">"Page Load"</span>,
+	attributes : {
+		digitalData : <span class="hljs-built_in">window</span>.digitalData
+	},
+	type : <span class="hljs-string">"CustomTagEvent"</span>
+});</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
