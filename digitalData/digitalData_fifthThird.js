@@ -115,6 +115,9 @@ javascript: (function() {
 			(ev.attributes != undefined) ? (event_.attributes = ev.attributes) : (event_.attributes);
 		}
 		// event array is updated and a window.trigger is fired at this point to alert the browser that a new event has occurred.
+		if(typeof window.digitalData.events == "undefined") {
+			window.digitalData.events = new Array();
+		}
 		window.digitalData.events.push(event_);
 		if ( typeof jQuery != "undefined") {
 			jQuery(window).trigger(event_);
@@ -131,6 +134,9 @@ javascript: (function() {
 
 // **to be implemented in a global page load rule in DTM -**
 // sample code for demo -
+if(typeof window.digitalData == "undefined") {
+	window.digitalData = {};
+}
 window.digitalData.debug = true;
 // start the event listener:
 // this is example code that would be used to listen for digitalData events
