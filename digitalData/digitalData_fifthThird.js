@@ -41,6 +41,7 @@ javascript: (function() {
 		CLB2CApplicationNumber : null,
 		turndownCode : null,
 		morgageLeadID : null,
+		applySesssionID: null
 	};
 
 	// **digitalData.page.category:**
