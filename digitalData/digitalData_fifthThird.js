@@ -149,6 +149,12 @@ window.digitalData.eventHandler = function() {
 		jQuery(window).bind("CustomTagEvent", function(e) {
 			if (window.digitalData.debug !== false) {
 				console.log("event triggered: name-" + e.eventName + " action-" + e.eventAction + " type-" + e.type);
+				
+				if (e.eventAction == "Aggregator" && e.eventName == "Add New Events") {
+					for(var i = 0; i < e.attributes.events.length; i++) {
+						window.digitalData.newEvent(e.attributes.events[i]);
+					}
+				}
 
 				if (e.eventAction == "Tool Interactions") {
 					switch (e.eventName) {
@@ -490,3 +496,36 @@ window.digitalData.newEvent({
 	type : "CustomTagEvent"
 });
 
+// example of calling newEvent to trigger multiple aggregated events. 
+window.digitalData.newEvent({
+	eventName : "Add New Events",
+	eventAction : "Aggregator",
+	attributes : {
+		events : [
+			{
+				eventName : "MLO Search: Start",
+				eventAction : "MLO Search",
+				type : "CustomTagEvent"
+			},
+			{
+				eventName : "MLO Search: Visit Website",
+				eventAction : "MLO Search",
+				type : "CustomTagEvent"
+			},
+			{
+				eventName : "Logout",
+				eventAction : "Authentication",
+				type : "CustomTagEvent"
+			},
+			{
+				eventName : "Account Action",
+				eventAction : "Account Action",
+				type : "CustomTagEvent",
+				attributes : {
+					accountAction : "descriptions TBD"
+				}
+			}
+		]
+	},
+	type : "CustomTagEvent"
+});
