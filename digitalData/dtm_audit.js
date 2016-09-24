@@ -126,3 +126,43 @@ for (var i = 0; i < _satellite.pageLoadRules.length; i++) {
   }
 };
 
+// dataElements
+for (j in _satellite.dataElements) {
+  if (_satellite.dataElements[j].hasOwnProperty('selector') == true) {
+    var selected = jQuery(_satellite.dataElements[j].selector);
+    if (_satellite.dataElements[j].hasOwnProperty('property') == true) {
+      if (_satellite.dataElements[j].property == 'text') {
+        console.log(j + ': ' + jQuery(selected).text());
+      } 
+      else if (_satellite.dataElements[j].property == 'value') {
+        console.log(j + ': ' + jQuery(selected).val());
+      } 
+      else {
+        console.log(j + ': ' + jQuery(selected).attr(_satellite.dataElements[j].property));
+      }
+    }
+  } 
+  else if (_satellite.dataElements[j].hasOwnProperty('queryParam') == true) {
+    var parseQueryString = function () {
+      var str = window.location.search;
+      var objURL = {
+      };
+      str.replace(new RegExp('([^?=&]+)(=([^&]*))?', 'g'), function ($0, $1, $2, $3) {
+        objURL[$1] = $3;
+      }
+      );
+      return objURL;
+    };
+    console.log(j + ': ' + parseQueryString() [_satellite.dataElements[j].queryParam]);
+  } 
+  else if (_satellite.dataElements[j].hasOwnProperty('jsVariable') == true) {
+    console.log(j + ': ' + (eval('try{' + _satellite.dataElements[j].jsVariable + '}catch(e){;}')));
+  } else if (_satellite.dataElements[j].hasOwnProperty('customJS') == true) {
+    try {
+      var result = _satellite.dataElements[j].customJS();
+      console.log(j + ": " + result);
+    } catch(e) {
+      console.log(j + ": undefined");
+    }
+  }
+}
