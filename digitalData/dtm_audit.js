@@ -1,5 +1,5 @@
 for (var i = 0; i < _satellite.pageLoadRules.length; i++) {
-	console.log('================================================================================================')
+	console.log('================================================================================================');
 	console.log((i + 1) + '.) ' + _satellite.pageLoadRules[i].name);
 	var includeRules = true;
 	if ( typeof _satellite.pageLoadRules[i].scope != 'undefined' && typeof _satellite.pageLoadRules[i].scope.URI != 'undefined' && typeof _satellite.pageLoadRules[i].scope.URI.include != 'undefined') {
@@ -110,7 +110,8 @@ for (var i = 0; i < _satellite.pageLoadRules.length; i++) {
 	}
 	if (includeRules && excludeRules && conditions) {
 		console.log('%c ALL RULES AND CONDITIONS APPEAR TO MATCH', 'background: #222; color: #fff');
-		for (var h = 0; typeof _satellite.pageLoadRules[i].trigger != 'undefined' && h < _satellite.pageLoadRules[i].trigger.length; h++) {
+		console.log(_satellite.pageLoadRules[i]);
+    for (var h = 0; typeof _satellite.pageLoadRules[i].trigger != 'undefined' && h < _satellite.pageLoadRules[i].trigger.length; h++) {
 			if (_satellite.pageLoadRules[i].trigger[h].engine == 'sc' && _satellite.pageLoadRules[i].trigger[h].command == 'setVars') {
 				console.log(JSON.stringify(_satellite.pageLoadRules[i].trigger[h].arguments[0]));
 			}
@@ -123,10 +124,11 @@ for (var i = 0; i < _satellite.pageLoadRules.length; i++) {
 		}
 	}
 };
-console.log('================================================================================================')
-console.log('Data Elements: (if present on page load)');
+console.log('================================================================================================');
+console.log('%c Data Elements: (if present on page load)','color:blue');
 // dataElements
 for (j in _satellite.dataElements) {
+	
 	if (_satellite.dataElements[j].hasOwnProperty('selector') == true) {
 		var selected = jQuery(_satellite.dataElements[j].selector);
 		if (_satellite.dataElements[j].hasOwnProperty('property') == true) {
@@ -160,3 +162,40 @@ for (j in _satellite.dataElements) {
 		}
 	}
 }
+console.log('================================================================================================');
+if (typeof s != 'undefined') {
+  for (j in s) {
+    switch (j) {
+      case 'channel':
+        console.log(j + ': ' + s[j]);
+        break;
+      case 'un':
+        console.log(j + ': ' + s[j]);
+        break;
+      case 'trackingServer':
+        console.log(j + ': ' + s[j]);
+        break;
+      case 'trackingServerSecure':
+        console.log(j + ': ' + s[j]);
+        break;
+      case 'version':
+        console.log(j + ': ' + s[j]);
+        break;
+      case 'linkInternalFilters':
+        console.log(j + ': ' + s[j]);
+        break;
+      case 'currencyCode':
+        console.log(j + ': ' + s[j]);
+        break;
+      case 'events':
+        console.log(j + ': ' + s[j]);
+        break;
+      case 'products':
+        console.log(j + ': ' + s[j]);
+        break;
+      default:
+        ;
+    }
+  };
+}
+
