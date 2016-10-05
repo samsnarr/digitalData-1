@@ -203,6 +203,21 @@ window.digitalData.eventHandler = function() {
 						break;
 					}
 				}
+				
+				if (e.eventAction == "Error Tracking") {
+					switch (e.eventName) {
+					case "Error Tracking":
+						if(typeof e.attributes != 'undefined' && typeof e.attributes.errorMessage != 'undefined' && typeof e.attributes.errorMessage.fieldsHadErrors != 'undefined' && e.attributes.errorMessage.fieldsHadErrors.length > 0) {
+							window.s.trackLinkEvents = "event10";
+							window.s.trackLinkVars = "events,list1";
+							window.s.list1 = e.attributes.errorMessage.fieldsHadErrors.join("|");
+							window.s.pageName = e.attributes.pageWithErrors;
+							window.s.events = "event10";
+							window.s.tl();
+						}
+						break;
+					}
+				}
 
 				if (e.eventAction == "Branch/ATM Locator Search Initiation") {
 					if (e.eventName == "Tool Usage: Branch/ATM Locator Search Initiation") {
@@ -526,6 +541,21 @@ window.digitalData.newEvent({
 				}
 			}
 		]
+	},
+	type : "CustomTagEvent"
+});
+
+// error tracking
+window.digitalData.newEvent({
+	eventName : "Error Tracking",
+	eventAction : "Error Tracking",
+	attributes : {
+		digitalData : window.digitalData,
+		errorCode : "validationErrorOccurred",
+		pageWithErrors : "applicantInfo1",
+		errorMessage : {
+			fieldsHadErrors : ["name-1","name-3","email"]
+		}
 	},
 	type : "CustomTagEvent"
 });
