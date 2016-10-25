@@ -201,6 +201,15 @@ window.digitalData.eventHandler = function() {
 					case "In-page Content View":
 						;// TBD
 						break;
+					case "Navigation Element Click":
+						if(typeof e.attributes != 'undefined' && typeof e.attributes.elementName != 'undefined') {
+							window.s.trackLinkEvents = "event7";
+							window.s.trackLinkVars = "events,eVar7";
+							window.s.eVar7 = e.attributes.elementName;
+							window.s.events = "event7";
+							window.s.tl();
+						}
+						break;
 					}
 				}
 				
@@ -302,6 +311,16 @@ window.digitalData.eventHandler();
 
 // **to be implemented by site dev team on page events -**
 // trigger an event:
+
+//event7, evar7	Navigation Element	On click of select navigation elements
+window.digitalData.newEvent({
+	eventName : "Navigation Element Click",
+	eventAction : "Page Element Interactions",
+	type : "CustomTagEvent",
+	attributes : {
+		elementName : "Element Name"
+	}
+});
 
 // event103, Set any time a visitor clicks Skip Calculator in CLB2C app
 window.digitalData.newEvent({
