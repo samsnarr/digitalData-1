@@ -207,6 +207,12 @@ window.digitalData.eventHandler = function() {
 					case "In-page Content View":
 						;// TBD
 						break;
+					case "Click to Chat Click": 
+						window.s.trackLinkEvents = "event47";
+						window.s.trackLinkVars = "events";
+						window.s.events = "event47";
+						window.s.tl(); 
+						break;
 					case "Navigation Element Click":
 						if(typeof e.attributes != 'undefined' && typeof e.attributes.elementName != 'undefined') {
 							window.s.trackLinkEvents = "event7";
@@ -328,6 +334,13 @@ window.digitalData.newEvent({
 	attributes : {
 		elementName : "Element Name"
 	}
+});
+
+//event47, Click to Chat Clicks	on click of click to chat 
+window.digitalData.newEvent({
+	eventName : "Click to Chat Click",
+	eventAction : "Page Element Interactions",
+	type : "CustomTagEvent"
 });
 
 // event103, Set any time a visitor clicks Skip Calculator in CLB2C app
