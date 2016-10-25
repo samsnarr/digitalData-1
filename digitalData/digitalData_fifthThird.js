@@ -181,7 +181,13 @@ window.digitalData.eventHandler = function() {
 						;// TBD
 						break;
 					case "Apply Now Click":
-						;// TBD
+						if(typeof e.attributes != 'undefined' && typeof e.attributes.productID != 'undefined') {
+							window.s.trackLinkEvents = "event95";
+							window.s.trackLinkVars = "events,products";
+							window.s.products = ";" + e.attributes.productID;
+							window.s.events = "event95";
+							window.s.tl();
+						}
 						break;
 					case "Find a Branch Click":
 						;// TBD
@@ -382,7 +388,10 @@ window.digitalData.newEvent({
 window.digitalData.newEvent({
 	eventName : "Apply Now Click",
 	eventAction : "Page Element Interactions",
-	type : "CustomTagEvent"
+	type : "CustomTagEvent",
+	attributes : {
+		productID: "product ID"
+	}
 });
 
 //event94, On click of a "find a branch" button
