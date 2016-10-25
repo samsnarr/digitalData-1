@@ -261,7 +261,9 @@ window.digitalData.eventHandler = function() {
 						;// TBD
 						break;
 					case "Registration Complete":
-						;// TBD
+						window.s.trackLinkEvents = "event9";
+						window.s.events = "event9";
+						window.s.tl();
 						break;
 					}
 				}
