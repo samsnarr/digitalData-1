@@ -602,3 +602,92 @@ window.digitalData.newEvent({
 	},
 	type : "CustomTagEvent"
 });
+
+/*
+ * 
+ * examples of navigation tracking on 53.com home page
+ * 
+ */
+$('div.nav-container ul.nav-main a').mousedown(function () {
+  //console.log(this.text); 
+  window.digitalData.newEvent({
+    eventName: 'Navigation Element Click',
+    eventAction: 'Page Element Interactions',
+    type: 'CustomTagEvent',
+    attributes: {
+      elementName: 'nav-main | ' + this.text
+    }
+  });
+});
+
+$('div.nav-main-sub li.sub-parent > a').mousedown(function () {
+  //console.log(this.text); 
+  window.digitalData.newEvent({
+  	eventName : "Navigation Element Click",
+	eventAction : "Page Element Interactions",
+	type : "CustomTagEvent",
+	attributes : {
+			elementName : "nav-main | sub-parent | " + this.text 
+		}
+	});
+});
+
+$('div.nav-main-sub li.sub-parent ul a').mousedown(function () {
+  //console.log(this.text); 
+  window.digitalData.newEvent({
+    eventName: 'Navigation Element Click',
+    eventAction: 'Page Element Interactions',
+    type: 'CustomTagEvent',
+    attributes: {
+      elementName: 'nav-main | sub-parent | nav | ' + this.text
+    }
+  });
+});
+
+$('div.find-it-container a').mousedown(function () {
+  //console.log(this.text); 
+  window.digitalData.newEvent({
+    eventName: 'Navigation Element Click',
+    eventAction: 'Page Element Interactions',
+    type: 'CustomTagEvent',
+    attributes: {
+      elementName: 'find-it-container | ' + this.text
+    }
+  });
+});
+
+$('div.plan-container div.main li').mousedown(function () {
+  //console.log(this.text); 
+  window.digitalData.newEvent({
+    eventName: 'Navigation Element Click',
+    eventAction: 'Page Element Interactions',
+    type: 'CustomTagEvent',
+    attributes: {
+      elementName: 'plan-container | ' + this.text
+    }
+  });
+});
+
+$('div.flip-container a').mousedown(function () {
+  //console.log(this.text); 
+  window.digitalData.newEvent({
+  	eventName : "Navigation Element Click",
+	eventAction : "Page Element Interactions",
+	type : "CustomTagEvent",
+	attributes : {
+			elementName : "coins | " + this.text 
+		}
+	});
+});
+
+$('div.footer div.links-left a').mousedown(function () {
+  //console.log(this.text); 
+  window.digitalData.newEvent({
+    eventName: 'Navigation Element Click',
+    eventAction: 'Page Element Interactions',
+    type: 'CustomTagEvent',
+    attributes: {
+      elementName: 'footer | ' + this.text
+    }
+  });
+});
