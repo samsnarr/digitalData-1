@@ -1,0 +1,120 @@
+digitalData = {
+	page:{
+		pageInfo:{
+			area:"core",
+			platform:"WP",
+			sessionId:"abdS89kBIHCAOa2UUiv4v", //secured cookie -> need unsecure or populate cookie from BE
+			type:"Intent",
+			family:{
+				type:"Article",
+					title:"How to get good credit with credit cards",
+					author:"Cheryl Lock",
+					minutes:4,
+					wordCount:"", //https://stackoverflow.com/questions/765419/javascript-word-count-for-any-given-dom-element
+					dateCreated:"August 23, 2017",
+					lastUpdate:"August 23, 2017",
+					numberOfComments:0,
+					},
+			seo:{
+				title:"Check Your Credit & Make Smarter Financial Decisions",
+				description:"Get a Truly Free Credit Score & Personalized Advice From Our Credit Experts.",
+				keywords:"Credit",
+				links:{
+					total:84,
+					external:8,
+					internal:76,
+					}
+				},
+			experience:[
+				{platform:"BounceExchange", //have set from bx
+				campaign:"Test Title",
+				experienceName:"Test A",
+				},
+				{platform:"Target", //set from ttMeta
+				campaign:"Better Test Title",
+				experienceName:"Test B"
+				}
+			],
+			name:"", //Find good way to programatically name pages
+			category:"Credit Card", //can manually set in WP
+			uri:{ // all can be pulled from location
+				protocol:"https:", //location.protocol
+				domain:"blog.credit.com", //location.host
+				path:"/credit-cards/content/best-credit-cards-for-bad-credit/tips/", //location.pathname
+				query:"sam=cool", //location.toString().split('?')[1]
+				fragment:"#category-best-rewards" //location.toString().split('#')[1]
+			}
+		}
+	},
+	products:{
+		display:[
+			{type:"Marketplace Results",
+			filter:[{
+				cardType:"Personal",
+				rewards:"Point Rewards|Hotel Points",
+				preferences:"Low APR|Prepaid Cards",
+				creditLevel:"Poor (600-649)",
+				issuer:"Discover|Visa"
+				}],
+			shown:3,
+			info:[
+				{name:"Discover it - Cashback Match",
+				id:"15936",
+				issuer:"Discover Card",
+				category:{
+					primaryCategory:"Credit Card",
+					subCateogry:"Rewards",
+					affinity:"Cashback"
+				},
+				prequal:{
+					general:"prime" || "subprime" || "no credit", //pulled from API?
+					targetScoreHigh:720,
+					targetScoreLow:650
+				},
+				display:"marketplace listing",
+				rlink:"//www.credit.com/r/discover-it-cashback/",
+				href:"//www.credit.com/r/discover-it-cashback"
+				},
+				{name:"Lexington Law - Need Credit Repair Help?",
+				id:"11111",
+				issuer:"Lexington Law",
+				category:"Credit Repair",
+				display:"Banner Ad",
+				rlink:"//www.credit.com/r/lexington-law-intent?af=p32806&pl=clo/",
+				href:"//www.credit.com/r/lexington-law-intent?af=p32806&pl=clo/"
+				},
+				{name:"Loan Depot Mortgage",
+				id:"99999",
+				issuer:"Loan Depot",
+				category:"Loan",
+				display:"schummer box",
+				rlink:"//www.credit.com/r/loan-depot/",
+				href:"//www.credit.com/api/mortgage/v1/morgageoffers?af=32806&adv=qs"
+				}]
+			},
+			{type:"Display Ad",
+			shown:1,
+			info:[
+				{name:"Lexington Law - Need Credit Repair Help?",
+				id:"11111",
+				issuer:"Lexington Law",
+				category:"Credit Repair",
+				display:"Banner Ad",
+				rlink:"//www.credit.com/r/lexington-law-intent?af=p32806&pl=clo/",
+				href:"//www.credit.com/r/lexington-law-intent?af=p32806&pl=clo/"
+			}]
+		}]
+	},
+	user:{
+		status:"Authenticated" || "Unauthenticated",
+		visitNumber:5,
+		member:{
+			userID:"12349876", //not sure
+			band:"4b", //ccomseg cookie
+			negItems:0 || 1,
+			goal:"Improve Credit" // from selection
+			}
+		affiliateID:32806, //afid cookie...which one?
+		channelString:"32806:32806:32806" // string together - build cookie and add to it
+	}
+}
